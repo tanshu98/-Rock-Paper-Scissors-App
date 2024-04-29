@@ -1,13 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from "./components/Home/Home";
+import { Box, ThemeProvider, createTheme, PaletteMode } from "@mui/material";
+import { AppStyles } from "./AppStyles";
+import { useContext, useState } from "react";
+import { MainContext } from "./context/context";
 
-function App() {
+const App = () => {
+  const {mode,setMode} = useContext(MainContext)
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
   return (
-   <>
-   Hello world!
-   </>
+    <>
+    <ThemeProvider theme={darkTheme}>
+
+      <Box sx={AppStyles.mainContainer}>
+        <Home />
+      </Box>
+    </ThemeProvider>
+    </>
   );
-}
+};
 
 export default App;
